@@ -297,7 +297,8 @@ public class NitroSecureAssetHandler extends ChannelInboundHandlerAdapter {
 
     private static void applyCors(FullHttpRequest req, FullHttpResponse response) {
         String origin = req.headers().get(HttpHeaderNames.ORIGIN);
-        if (origin != null && !origin.isEmpty()) {
+
+        if (origin != null && !origin.isEmpty() && CorsOriginGate.isAllowed(req)) {
             response.headers().set("Access-Control-Allow-Origin", origin);
         }
         response.headers().set("Access-Control-Allow-Methods", "GET, HEAD, POST, OPTIONS");
