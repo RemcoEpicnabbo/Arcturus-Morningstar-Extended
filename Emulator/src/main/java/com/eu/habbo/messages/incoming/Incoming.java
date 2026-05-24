@@ -463,4 +463,5 @@ public class Incoming {
 
     // Housekeeping (in-client admin panel) — IDs 9100..9199 reserved
     public static final int HousekeepingFindUserByNameEvent = 9100;
+    public static final int HousekeepingFindUserByIdEvent = 9101;
 }
