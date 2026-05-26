@@ -89,6 +89,7 @@ public class HabboStats implements Runnable {
     public long lastTradeTimestamp = Emulator.getIntUnixTimestamp();
     public long lastGiftTimestamp = Emulator.getIntUnixTimestamp();
     public long lastPurchaseTimestamp = Emulator.getIntUnixTimestamp();
+    public long lastFloorplanSaveTimestamp = 0;
     public int uiFlags;
     public boolean hasGottenDefaultSavedSearches;
     private HabboInfo habboInfo;
