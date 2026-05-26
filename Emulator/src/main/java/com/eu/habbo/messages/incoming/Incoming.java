@@ -460,4 +460,30 @@ public class Incoming {
     public static final int YouTubeRoomPlayEvent = 8001;
     public static final int YouTubeRoomWatchingEvent = 8002;
     public static final int YouTubeRoomSettingsEvent = 8003;
+
+    // Housekeeping (in-client admin panel) — IDs 9100..9199 reserved
+    public static final int HousekeepingFindUserByNameEvent = 9100;
+    public static final int HousekeepingFindUserByIdEvent = 9101;
+    public static final int HousekeepingBanUserEvent = 9102;
+    public static final int HousekeepingUnbanUserEvent = 9103;
+    public static final int HousekeepingMuteUserEvent = 9104;
+    public static final int HousekeepingKickUserEvent = 9105;
+    public static final int HousekeepingForceDisconnectUserEvent = 9106;
+    public static final int HousekeepingSetUserRankEvent = 9107;
+    public static final int HousekeepingTradeLockUserEvent = 9108;
+    public static final int HousekeepingResetUserPasswordEvent = 9109;
+    public static final int HousekeepingFindRoomByIdEvent = 9110;
+    public static final int HousekeepingSearchRoomsEvent = 9111;
+    public static final int HousekeepingRoomStateEvent = 9112;
+    public static final int HousekeepingMuteRoomEvent = 9113;
+    public static final int HousekeepingKickAllFromRoomEvent = 9114;
+    public static final int HousekeepingTransferRoomOwnershipEvent = 9115;
+    public static final int HousekeepingDeleteRoomEvent = 9116;
+    public static final int HousekeepingGiveCreditsEvent = 9117;
+    public static final int HousekeepingGiveCurrencyEvent = 9118;
+    public static final int HousekeepingGrantItemEvent = 9119;
+    public static final int HousekeepingSetHcSubscriptionEvent = 9120;
+    public static final int HousekeepingSendHotelAlertEvent = 9121;
+    public static final int HousekeepingGetDashboardEvent = 9122;
+    public static final int HousekeepingListActionLogEvent = 9123;
 }

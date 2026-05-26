@@ -1,0 +1,1 @@
+INSERT INTO `camwijsnew`.`permission_definitions` (`permission_key`, `max_value`, `comment`, `rank_1`, `rank_2`, `rank_3`, `rank_4`, `rank_5`, `rank_6`, `rank_7`) VALUES ('acc_housekeeping', '1', 'Allow housekeeping in the client', '0', '0', '0', '0', '0', '0', '1');

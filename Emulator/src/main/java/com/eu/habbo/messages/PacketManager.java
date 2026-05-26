@@ -719,5 +719,31 @@ public class PacketManager {
         this.registerHandler(Incoming.YouTubeRoomPlayEvent, com.eu.habbo.messages.incoming.rooms.youtube.YouTubeRoomPlayEvent.class);
         this.registerHandler(Incoming.YouTubeRoomWatchingEvent, com.eu.habbo.messages.incoming.rooms.youtube.YouTubeRoomWatchingEvent.class);
         this.registerHandler(Incoming.YouTubeRoomSettingsEvent, com.eu.habbo.messages.incoming.rooms.youtube.YouTubeRoomSettingsEvent.class);
+
+        // Housekeeping (in-client admin panel)
+        this.registerHandler(Incoming.HousekeepingFindUserByNameEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingFindUserByNameEvent.class);
+        this.registerHandler(Incoming.HousekeepingFindUserByIdEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingFindUserByIdEvent.class);
+        this.registerHandler(Incoming.HousekeepingBanUserEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingBanUserEvent.class);
+        this.registerHandler(Incoming.HousekeepingUnbanUserEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingUnbanUserEvent.class);
+        this.registerHandler(Incoming.HousekeepingMuteUserEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingMuteUserEvent.class);
+        this.registerHandler(Incoming.HousekeepingKickUserEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingKickUserEvent.class);
+        this.registerHandler(Incoming.HousekeepingForceDisconnectUserEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingForceDisconnectUserEvent.class);
+        this.registerHandler(Incoming.HousekeepingSetUserRankEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingSetUserRankEvent.class);
+        this.registerHandler(Incoming.HousekeepingTradeLockUserEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingTradeLockUserEvent.class);
+        this.registerHandler(Incoming.HousekeepingResetUserPasswordEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingResetUserPasswordEvent.class);
+        this.registerHandler(Incoming.HousekeepingFindRoomByIdEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingFindRoomByIdEvent.class);
+        this.registerHandler(Incoming.HousekeepingSearchRoomsEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingSearchRoomsEvent.class);
+        this.registerHandler(Incoming.HousekeepingRoomStateEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingRoomStateEvent.class);
+        this.registerHandler(Incoming.HousekeepingMuteRoomEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingMuteRoomEvent.class);
+        this.registerHandler(Incoming.HousekeepingKickAllFromRoomEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingKickAllFromRoomEvent.class);
+        this.registerHandler(Incoming.HousekeepingTransferRoomOwnershipEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingTransferRoomOwnershipEvent.class);
+        this.registerHandler(Incoming.HousekeepingDeleteRoomEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingDeleteRoomEvent.class);
+        this.registerHandler(Incoming.HousekeepingGiveCreditsEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingGiveCreditsEvent.class);
+        this.registerHandler(Incoming.HousekeepingGiveCurrencyEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingGiveCurrencyEvent.class);
+        this.registerHandler(Incoming.HousekeepingGrantItemEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingGrantItemEvent.class);
+        this.registerHandler(Incoming.HousekeepingSetHcSubscriptionEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingSetHcSubscriptionEvent.class);
+        this.registerHandler(Incoming.HousekeepingSendHotelAlertEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingSendHotelAlertEvent.class);
+        this.registerHandler(Incoming.HousekeepingGetDashboardEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingGetDashboardEvent.class);
+        this.registerHandler(Incoming.HousekeepingListActionLogEvent, com.eu.habbo.messages.incoming.housekeeping.HousekeepingListActionLogEvent.class);
     }
 }
