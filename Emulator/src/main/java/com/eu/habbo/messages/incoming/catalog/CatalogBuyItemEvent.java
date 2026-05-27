@@ -5,6 +5,7 @@ import com.eu.habbo.habbohotel.bots.BotManager;
 import com.eu.habbo.habbohotel.catalog.*;
 import com.eu.habbo.habbohotel.catalog.layouts.*;
 import com.eu.habbo.habbohotel.items.FurnitureType;
+import com.eu.habbo.habbohotel.items.Item;
 import com.eu.habbo.habbohotel.permissions.Permission;
 import com.eu.habbo.habbohotel.pets.PetManager;
 import com.eu.habbo.habbohotel.rooms.BuildersClubRoomSupport;
@@ -206,15 +207,27 @@ public class CatalogBuyItemEvent extends MessageHandler {
                     }
                 }
             }
-            // temp patch, can a dev with better knowledge than me look into this asap pls.
-            if (page instanceof  BotsLayout) {
-                if (!this.client.getHabbo().hasPermission(Permission.ACC_UNLIMITED_BOTS) && this.client.getHabbo().getInventory().getBotsComponent().getBots().size() >= BotManager.MAXIMUM_BOT_INVENTORY_SIZE) {
-                    this.client.getHabbo().alert(Emulator.getTexts().getValue("error.bots.max.inventory").replace("%amount%", BotManager.MAXIMUM_BOT_INVENTORY_SIZE + ""));
-                    return;
+			
+            boolean itemHasBot = false;
+            boolean itemHasPet = false;
+
+            if (item != null) {
+                for (Item baseItem : item.getBaseItems()) {
+                    if (baseItem == null) continue;
+                    if (Item.isBot(baseItem)) itemHasBot = true;
+                    if (Item.isPet(baseItem)) itemHasPet = true;
                 }
             }
-            if (page instanceof PetsLayout) {
-                if (!this.client.getHabbo().hasPermission(Permission.ACC_UNLIMITED_PETS) && this.client.getHabbo().getInventory().getPetsComponent().getPets().size() >= PetManager.MAXIMUM_PET_INVENTORY_SIZE) {
+
+            if (itemHasBot && !this.client.getHabbo().hasPermission(Permission.ACC_UNLIMITED_BOTS)
+                    && this.client.getHabbo().getInventory().getBotsComponent().getBots().size() >= BotManager.MAXIMUM_BOT_INVENTORY_SIZE) {
+                this.client.getHabbo().alert(Emulator.getTexts().getValue("error.bots.max.inventory").replace("%amount%", BotManager.MAXIMUM_BOT_INVENTORY_SIZE + ""));
+                return;
+            }
+
+            if (itemHasPet) {
+                if (!this.client.getHabbo().hasPermission(Permission.ACC_UNLIMITED_PETS)
+                        && this.client.getHabbo().getInventory().getPetsComponent().getPets().size() >= PetManager.MAXIMUM_PET_INVENTORY_SIZE) {
                     this.client.getHabbo().alert(Emulator.getTexts().getValue("error.pets.max.inventory").replace("%amount%", PetManager.MAXIMUM_PET_INVENTORY_SIZE + ""));
                     return;
                 }

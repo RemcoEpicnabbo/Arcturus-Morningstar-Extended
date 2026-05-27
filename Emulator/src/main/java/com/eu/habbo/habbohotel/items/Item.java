@@ -48,6 +48,12 @@ public class Item implements ISerialize {
         return item.getName().toLowerCase().startsWith("a0 pet");
     }
 
+    public static boolean isBot(Item item) {
+        if (item == null) return false;
+        String name = item.getName();
+        return name != null && (name.startsWith("bot_") || name.startsWith("rentable_bot_"));
+    }
+
     public static double getCurrentHeight(HabboItem item) {
         if (item instanceof InteractionMultiHeight && item.getBaseItem().getMultiHeights().length > 0) {
             if (item.getExtradata().isEmpty()) {
