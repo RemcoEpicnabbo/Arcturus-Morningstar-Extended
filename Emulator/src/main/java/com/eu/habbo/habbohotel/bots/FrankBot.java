@@ -1,12 +1,7 @@
 package com.eu.habbo.habbohotel.bots;
 
 import com.eu.habbo.Emulator;
-import com.eu.habbo.habbohotel.rooms.Room;
-import com.eu.habbo.habbohotel.rooms.RoomChatMessage;
-import com.eu.habbo.habbohotel.rooms.RoomChatMessageBubbles;
-import com.eu.habbo.habbohotel.rooms.RoomTile;
-import com.eu.habbo.habbohotel.rooms.RoomUnitStatus;
-import com.eu.habbo.habbohotel.rooms.RoomUserRotation;
+import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.outgoing.rooms.users.RoomUserStatusComposer;
 import com.eu.habbo.messages.outgoing.rooms.users.RoomUserWhisperComposer;
@@ -26,37 +21,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
-/**
- * Frank, Habbo's mascot. Behaves as a Butler (inherits the give-item
- * walk-and-serve flow from ButlerBot via bot_serves) plus a keyword
- * to chat-reply layer for the non-item conversational commands
- * ("cat", "Vietnam", "Miranda", "help", "Frank Black", "life",
- * etc).
- *
- * Chat replies live in `bot_chat_responses` keyed by bot_type so
- * other future scripted bots can reuse the same table. Each row's
- * `keys` is a semicolon-separated list of trigger words, `responses`
- * is a newline-separated list of replies that Frank picks from at
- * random for variety.
- *
- * Resolution order on each user message: chat reply first (instant,
- * no walking) - if no chat keyword hits, fall through to the
- * inherited ButlerBot logic so item commands keep working.
- */
 public class FrankBot extends ButlerBot {
     private static final Logger LOGGER = LoggerFactory.getLogger(FrankBot.class);
 
     public static final String BOT_TYPE = "frank";
     public static final String PERMISSION_USE = "acc_bot_frank";
-
     private static final String KEY_DOOR_LINES = "__door_lines";
     private static final String KEY_BUSY_WHISPER = "__busy_whisper";
     private static final String KEY_DOOR_TRIGGERS = "__door_triggers";
-
-    // Fallbacks only - the live values are loaded from bot_chat_responses
-    // and surface to admins via the __door_lines / __busy_whisper /
-    // __door_triggers rows. These constants are used only if the SQL row
-    // is missing so Frank does not break on a bad install.
     private static final List<String> DEFAULT_DOOR_LINES = List.of(
             "Right this way - mind the step!",
             "And out you go. Come back soon!",
@@ -101,6 +73,13 @@ public class FrankBot extends ButlerBot {
             this.homeTile = this.getRoomUnit().getCurrentLocation();
             this.homeRotation = this.getRoomUnit().getBodyRotation();
         }
+    }
+
+    private static final short[] FRANK_OWNER_ACTIONS = new short[0];
+
+    @Override
+    public short[] getOwnerActionIds() {
+        return FRANK_OWNER_ACTIONS;
     }
 
     public static void initialise() {
@@ -163,8 +142,6 @@ public class FrankBot extends ButlerBot {
                 }
             }
         } catch (SQLException e) {
-            // Table missing or transient DB issue - log once and let the bot
-            // fall through to ButlerBot behavior. The chat layer is additive.
             LOGGER.warn("FrankBot: could not load bot_chat_responses ({}). Frank will still serve items.", e.getMessage());
         }
 
@@ -466,9 +443,6 @@ public class FrankBot extends ButlerBot {
 
     private void persistPosition() {
         this.needsUpdate(true);
-        // Synchronous so the DB row reflects the home tile / rotation
-        // we just set, before busy clears and another onUserSay can
-        // race in and mutate position.
         this.run();
         this.busy.set(false);
     }
