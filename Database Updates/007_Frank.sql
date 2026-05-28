@@ -64,7 +64,7 @@ INSERT IGNORE INTO `bot_serves` (`keys`, `item`) VALUES
 -- After the SQL please go to the catalog_items table and change the page_id to where your BOTS are located
 
 INSERT IGNORE INTO `items_base` (`id`, `sprite_id`, `item_name`, `public_name`, `width`, `length`, `stack_height`, `allow_stack`, `allow_sit`, `allow_lay`, `allow_walk`, `allow_gift`, `allow_trade`, `allow_recycle`, `allow_marketplace_sell`, `allow_inventory_stack`, `type`, `interaction_type`, `interaction_modes_count`, `vending_ids`, `multiheight`, `customparams`)
-VALUES (99001, 0, 'bot_frank', 'Frank', 1, 1, 0.00, '0', '0', '0', '1', '0', '0', '0', '0', '0', 's', 'default', 1, '0', '0', 'name:Frank;motto:Welcome to Habbo!;figure:hr-3499-33.sh-290-90.ch-3971-72-73.lg-270-73.hd-205-1-1.fa-1206-67.ha-3409-73-72;gender:M');
+VALUES (99001, 0, 'bot_frank', 'Frank', 1, 1, 0.00, '0', '0', '0', '1', '0', '0', '0', '0', '0', 'r', 'default', 1, '0', '0', 'name:Frank;motto:Welcome to Habbo!;figure:hr-3499-33.sh-290-90.ch-3971-72-73.lg-270-73.hd-205-1-1.fa-1206-67.ha-3409-73-72;gender:M');
 
 INSERT IGNORE INTO `catalog_items` (`item_ids`, `page_id`, `offer_id`, `catalog_name`, `cost_credits`, `cost_points`, `points_type`, `amount`, `extradata`)
 VALUES ('99001', 1, 99001, 'Frank', 0, 0, 0, 1, '0');
