@@ -19,3 +19,8 @@ INSERT IGNORE INTO `emulator_settings` (`key`, `value`) VALUES
   ('mentions.max.targets', '50'),
   ('mentions.cooldown.ms', '3000'),
   ('mentions.store.limit', '50');
+
+
+ALTER TABLE `wordfilter`
+ADD COLUMN `prefix_only` ENUM('0','1') NOT NULL DEFAULT '0'
+COMMENT 'When 1, this word only applies to custom prefixes, not to chat/motto/guild.' AFTER `mute`;
